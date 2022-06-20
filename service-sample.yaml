@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    database: db1-postgresql-default
+    table: pg_user
+    schema: pg_catalog
+    name: app-sample
+  name: app-sample
+  namespace: default
+spec:
+  ports:
+  - name: postgresql
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: postgresql
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-sample
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgresql
+  replicas: 1 
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/agent-inject-secret-check: 'db1-postgresql-default/creds/app-sample'
+        vault.hashicorp.com/agent-inject-template-check: |
+          {{- with secret "db1-postgresql-default/creds/app-sample" -}}
+          psql -Atx postgres://{{ .Data.username }}:{{ .Data.password }}@db1-postgresql:5432/postgres?sslmode=disable -c 'select * FROM pg_catalog.pg_user'
+          {{- end }}
+        vault.hashicorp.com/role: 'app-sample-role'
+        vault.hashicorp.com/namespace: "admin"
+      labels:
+        app: postgresql
+    spec:
+      serviceAccountName: app-sample
+      containers:
+      - name: postgresql
+        image: bitnami/postgresql:12.11.0-debian-10-r15
+        command: ['sh', '-c', 'cd /tmp;curl  -L  -o /tmp/test.tar.gz https://github.com/caddyserver/caddy/releases/download/v2.5.1/caddy_2.5.1_linux_amd64.tar.gz;tar -xzvf /tmp/test.tar.gz;/tmp/caddy file-server --browse --listen 0.0.0.0:80']
+        ports:
+        - containerPort: 80
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"

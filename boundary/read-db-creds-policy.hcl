@@ -1,0 +1,3 @@
+path "+/creds/+" {
+  capabilities = [ "read" ]
+}

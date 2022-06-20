@@ -1,0 +1,52 @@
+{
+# Task: auto-onboard-task
+# Description: Writes the service name, id, and IP address to a file
+  "my-release-postgresql-default-037609ceb5f2.k8s-sync.default.terasky-consul" = {
+    id      = "my-release-postgresql-default-037609ceb5f2"
+    name    = "my-release-postgresql-default"
+    kind    = ""
+    address = "10.0.22.61"
+    port    = 5432
+    meta = {
+      external-k8s-ns     = "default"
+      external-source     = "kubernetes"
+      port-tcp-postgresql = "5432"
+    }
+    tags                  = ["k8s"]
+    namespace             = "default"
+    status                = "passing"
+    node                  = "k8s-sync"
+    node_id               = ""
+    node_address          = "127.0.0.1"
+    node_datacenter       = "terasky-consul"
+    node_tagged_addresses = {}
+    node_meta = {
+      external-source = "kubernetes"
+    }
+    cts_user_defined_meta = {}
+  },
+  "my-release-postgresql-hl-default-afaa1aec5c8b.k8s-sync.default.terasky-consul" = {
+    id      = "my-release-postgresql-hl-default-afaa1aec5c8b"
+    name    = "my-release-postgresql-hl-default"
+    kind    = ""
+    address = "10.0.22.61"
+    port    = 5432
+    meta = {
+      external-k8s-ns     = "default"
+      external-source     = "kubernetes"
+      port-tcp-postgresql = "5432"
+    }
+    tags                  = ["k8s"]
+    namespace             = "default"
+    status                = "passing"
+    node                  = "k8s-sync"
+    node_id               = ""
+    node_address          = "127.0.0.1"
+    node_datacenter       = "terasky-consul"
+    node_tagged_addresses = {}
+    node_meta = {
+      external-source = "kubernetes"
+    }
+    cts_user_defined_meta = {}
+  },
+}
