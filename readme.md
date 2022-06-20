@@ -31,7 +31,7 @@ This guide assumes you have AWS account and performed ```aws configure``` .
 terraform {  
   backend "remote" {  
     hostname = "app.terraform.io"  
-	organization = "Your Organization>"  
+	organization = "<Your Organization>"  
   
 	workspaces {  
       name = "aws"  
