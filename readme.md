@@ -10,6 +10,9 @@ This guide was tested on MacOs (M1) and assumes you have the following software 
 - boundary binary 
 - kubectl
 - helm
+- jq
+- bat
+- visual studio code
 
 ## Assumed services accounts
 This guide assumes you have Hashicorp cloud account, with organization and service principals and keys configured. 
