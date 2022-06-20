@@ -27,7 +27,7 @@ This guide assumes you have AWS account and performed ```aws configure``` .
 	- AWS_SECRET_ACCESS_KEY
 - apply variable set to aws and hcp workspaces
 - in ```aws``` directory edit remote.tf to represent your Terraform cloud configuration
-```json
+```
 terraform {  
   backend "remote" {  
     hostname = "app.terraform.io"  
