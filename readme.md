@@ -20,7 +20,8 @@ This guide also assumes you have Terraform enterprise account and performed ```t
 This guide assumes you have AWS account and performed ```aws configure``` .
 
 ## Create Terraform Cloud workspaces
-- create terraform cloud workspace for aws ( can be configured with VCS or as cli driven )
+- create terraform cloud workspace for aws ( can be configured with VCS or as cli driven ). 
+- make sure the aws state is shared with hcp workspace or with all workspaces
 - create terraform cloud workspace for hcp ( can be configured with VCS or as cli driven )
 - create variable set with the following environment variables:
 	- HCP_CLIENT_ID
